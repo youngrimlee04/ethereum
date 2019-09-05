@@ -72,7 +72,7 @@ const ABI = [
 	}
 ]
 
-const CA = '0xc32cc5019ef11448567aab00fc48348b12d56ade';
+const CA = '';
 
 var w3 = new Web3(new Web3.providers.HttpProvider('http://localhost:7545'))
 var ws3 = new Web3(new Web3.providers.WebsocketProvider('ws://localhost:7545'))
