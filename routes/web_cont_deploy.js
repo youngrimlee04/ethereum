@@ -44,7 +44,7 @@ contract.deploy({
   data:'0x' + bytecode,
   arguments : ['constructor hello world']
 }).send({
-  from : '0xc32cc5019ef11448567aab00fc48348b12d56ade',
+  from : '',
   gas :  1500000,
   gasPrice : '3000000000'
 }, function(err, txHash){
