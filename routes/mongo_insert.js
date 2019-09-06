@@ -64,4 +64,66 @@ router.get('/select', function(req, res, next) {
   });
 });
 
+//127.0.0.1:3000/mongo/delete?no=1
+router.get('/delete', function(req, res, next) {
+  var arr = {no : req.query.no};
+  MongoClient.connect('mongodb://localhost:27017/item', function(err, dbconn){
+    if(err) {
+      console.log('error', err);
+    }
+    else{
+      var collection = dbconn.db("item").collection('table1'); 
+      collection.deleteOne(arr).then(function(result){
+        console.log('delete : ', result);
+        res.redirect("/mongo/select");
+      })
+    }
+    dbconn.close();
+  });
+});
+
+
+
+router.get('/update', function(req, res, next) {
+  var no = req.query.no;
+  var arr = {no:no};
+  MongoClient.connect('mongodb://localhost:27017/item', function(err, dbconn){
+    if(err) {
+      console.log('error', err);
+    }
+    else{
+      var collection = dbconn.db("item").collection('table1'); 
+      collection.find(arr).toArray(function(err, docs){
+        res.render("update", {list:docs});
+      });
+    }
+    dbconn.close();
+  });
+});
+
+
+
+router.post('/update', function(req, res, next) {
+  var a = req.body.no;
+  var b = req.body.na;
+  var c = req.body.pr;
+  var d = req.body.cn;
+  //console.log(a,b,c,d);
+
+  var arr = {no:a}; //조건
+  MongoClient.connect('mongodb://localhost:27017/item', function(err, dbconn){
+    if(err) {
+      console.log('error', err);
+    }
+    else{
+      var collection = dbconn.db("item").collection('table1'); 
+      collection.updateMany(arr,  {$set:{name:b, price:c, cnt:d}}).then(function(result){
+          res.redirect("/mongo/select");
+      });
+    }
+    dbconn.close();
+  });
+});
+
 module.exports = router;
+
