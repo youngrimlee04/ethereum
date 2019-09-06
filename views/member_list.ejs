@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>회원가입 내역</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>나이</th>
+          <th>아이디</th>
+          <th>이름</th>
+        </tr>
+      </thead>
+
+      <tbody>
+      <% for(var i=0;i<member_list.length;i++) { %>
+        <tr>
+            <!--  id, age, name 처럼 key값 찍어야지 member에 있는 n1, n2값 등 찍으면 안됨 -->
+          <td><%= member_list[i].id %></td> 
+          <td><%= member_list[i].age %></td>
+          <td><%= member_list[i].name %></td>
+        </tr>
+        <% } %>  
+        </tbody>
+    </table>  
+    </body>
+  </html>
+  
+  
