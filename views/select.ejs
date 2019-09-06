@@ -5,6 +5,10 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
+    <a href="/mongo/insert">물품등록</a>
+    <a href="/mongo/delete">물품삭제</a>
+    <a href="/mongo/update">물품수정</a>
+    <hr />
     <table border="1">
       <thead>
         <tr>
@@ -12,6 +16,7 @@
           <th>물품명</th>
           <th>물품가격</th>
           <th>물품수량</th>
+          <th>비고</th>
         </tr>
       </thead>
 
@@ -22,6 +27,10 @@
           <td><%= list[i].name %></td>
           <td><%= list[i].price %></td>
           <td><%= list[i].cnt %></td>
+          <td>
+            <a href="/mongo/delete?no=<%= list[i].no %>">삭제</a>
+            <a href="/mongo/update?no=<%= list[i].no %>">수정</a>
+          </td>
         </tr>
       <% } %>  
       </tbody>
